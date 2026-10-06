@@ -1,0 +1,7 @@
+# ubuntu-memory-guard managed file
+# RAM usage = 100 * (1 - MemAvailable / MemTotal).
+trigger_percent = 70
+stop_percent = 68
+interval_seconds = 2
+max_batch_mib = 256
+swap_reserve_mib = 1024

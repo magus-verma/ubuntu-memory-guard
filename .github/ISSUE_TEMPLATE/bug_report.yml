@@ -1,0 +1,24 @@
+name: Bug report
+description: Report incorrect behavior or a compatibility problem.
+labels: [bug]
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Distribution, uname -r, Python version, systemd version, architecture.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Include steps to reproduce and the installed guard version.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Paste --status output and relevant journal lines; redact personal paths or names.
+      render: text

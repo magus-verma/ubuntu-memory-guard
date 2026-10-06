@@ -1,0 +1,37 @@
+# ubuntu-memory-guard managed file
+[Unit]
+Description=Proactive swap to preserve available memory
+Documentation=https://docs.kernel.org/admin-guide/cgroup-v2.html
+After=swap.target
+ConditionPathExists=/sys/fs/cgroup/memory.reclaim
+StartLimitIntervalSec=300
+StartLimitBurst=3
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -I -B /usr/local/lib/ubuntu-memory-guard/memory_guard.py
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=20
+OOMScoreAdjust=-900
+MemoryAccounting=yes
+MemoryMax=96M
+MemorySwapMax=0
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectControlGroups=no
+ReadWritePaths=/sys/fs/cgroup/memory.reclaim
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectClock=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
